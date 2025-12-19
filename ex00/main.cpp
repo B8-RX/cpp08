@@ -26,37 +26,67 @@ int	main(void) {
 	v.push_back(3);
 	v.push_back(4);
 	
-	const std::vector<int> cv = v;
-
+	std::cout << "vector container\n";
 	try {
-		std::vector<int>::iterator it = easyfind(v, 5);
-		std::cout << "Element found in v : " << *it << "\n";
+		std::vector<int>::iterator it = easyfind(v, 99);
+		std::cout << "Element found in container v : " << *it << "\n";
+	} catch (std::exception& e) {
+		std::cerr << e.what() << "\n";
+	}
+	try {
+		std::vector<int>::iterator it = easyfind(v, 2);
+		std::cout << "Element found in container v : " << *it << "\n";
+	} catch (std::exception& e) {
+		std::cerr << e.what() << "\n";
+	}
+	
+	const std::vector<int> cv = v;
+	std::cout << "\n\n";
+	std::cout << "const vector container\n";
+	try {
+		std::vector<int>::const_iterator it = easyfind(cv, 99);
+		std::cout << "Element found in container cv : " << *it << "\n";
 	} catch (std::exception& e) {
 		std::cerr << e.what() << "\n";
 	}
 	try {
 		std::vector<int>::const_iterator it = easyfind(cv, 2);
-		std::cout << "Element found in cv : " << *it << "\n";
+		std::cout << "Element found in container cv : " << *it << "\n";
 	} catch (std::exception& e) {
 		std::cerr << e.what() << "\n";
 	}
 
-	int set[] = {9, 8, 7, 6};
-	std::list<, sizeof(set)/sizeof(*set)>;
-	// const std::list<int> cl = {5, 6, 7, 8};
-
+	std::list<int> l;
+	l.assign(v.begin(), v.end());
+	std::cout << "\n\n";
+	std::cout << "list container\n";
 	try {
-		std::list<int>::iterator it = easyfind(l, 9);
-		std::cout << "Element found in l : " << *it << "\n";
+		std::list<int>::iterator it = easyfind(l, 99);
+		std::cout << "Element found in container l : " << *it << "\n";
+	} catch (std::exception& e) {
+		std::cerr << e.what() << "\n";
+	}
+	try {
+		std::list<int>::iterator it = easyfind(l, 2);
+		std::cout << "Element found in container l : " << *it << "\n";
 	} catch (std::exception& e) {
 		std::cerr << e.what() << "\n";
 	}
 	
-	// try {
-	// 	std::list<int>::iterator it = easyfind(cl, 9);
-	// 	std::cout << "Element found in l : " << *it << "\n";
-	// } catch (std::exception& e) {
-	// 	std::cerr << e.what() << "\n";
-	// }
+	const std::list<int> cl = l;
+	std::cout << "\n\n";
+	std::cout << "const list container\n";
+	try {
+		std::list<int>::const_iterator it = easyfind(cl, 99);
+		std::cout << "Element found in container cl : " << *it << "\n";
+	} catch (std::exception& e) {
+		std::cerr << e.what() << "\n";
+	}
+	try {
+		std::list<int>::const_iterator it = easyfind(cl, 2);
+		std::cout << "Element found in container cl : " << *it << "\n";
+	} catch (std::exception& e) {
+		std::cerr << e.what() << "\n";
+	}
 	return (0);
 }
