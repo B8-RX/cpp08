@@ -1,24 +1,29 @@
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
+#include<vector>
+#include <cstddef>
 #include <exception>
+
 class	Span {
 	public:
-		Span(void);
 		~Span(void);
 		Span(const Span&);
 		Span&	operator=(const Span&);
 
-		Span(int n);
+		Span(unsigned int n);
 		void	addNumber(int n);
-		class	FullException : public std::exception {
+		class	ContainerFullException : public std::exception {
 			public:
 				virtual const char* what() const throw() {
-					return ("Exception: Set is full\n");
+					return ("Exception: cannot add new number, container is full.\n");
 				}
-		}
+		};
+		
+		// add an overload on operator []
 	private:
-		// std::set || std::list || std::deque || std::vector
+		std::size_t			_capacity;
+		std::vector<int>	_v;
 };
 
 #endif // !SPAN_HPP
