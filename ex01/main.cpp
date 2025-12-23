@@ -18,11 +18,12 @@ int	main(void) {
 	Span s = Span(5);
 
 	try {
-		s.addNumber(19);
-		s.addNumber(20);
-		s.addNumber(21);
-		s.addNumber(22);
-		s.addNumber(23);
+		s.addNumber(-20);
+		s.addNumber(25);
+		s.addNumber(302);
+		s.addNumber(72);
+		s.addNumber(103);
+		std::cout << "span = " << s.shortestSpan() << "\n";
 		s.addNumber(99);
 	} catch (std::exception& e) {
 		std::cerr << e.what() << "\n";

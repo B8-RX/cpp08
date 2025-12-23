@@ -19,7 +19,14 @@ class	Span {
 					return ("Exception: cannot add new number, container is full.\n");
 				}
 		};
-		
+		class	NoSpanException : public std::exception {
+			public:
+				virtual const char* what() const throw() {
+					return ("Exception: no span can be found (no numbers or only one).\n");
+				}
+		};
+		unsigned int	longestSpan(void) const;
+		unsigned int	shortestSpan(void) const;
 		// add an overload on operator []
 	private:
 		std::size_t			_capacity;

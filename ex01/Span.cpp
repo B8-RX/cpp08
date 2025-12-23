@@ -1,6 +1,7 @@
 #include "./Span.hpp"
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 Span::~Span() {}
 
@@ -27,3 +28,54 @@ void	Span::addNumber(int n) {
 		throw (ContainerFullException());
 	_v.push_back(n);
 } 
+
+std::ostream& operator<<(std::ostream& ostr, const std::vector<int>& vector)
+{
+	std::vector<int>::const_iterator it = vector.begin();
+    for ( ; it != vector.end(); ++it)
+        ostr << ' ' << *it;
+    return ostr;
+}
+
+unsigned int	Span::shortestSpan(void) const {
+	if (_v.size() <= 1)
+		throw (NoSpanException());
+	std::vector<int>::const_iterator it = _v.begin();
+	int	delta = -1;
+	int deltatmp;
+	int	tmp = *it;
+	int	tmp2;
+
+	std::vector<int> vcpy;
+	for(; it != _v.end(); ++it)
+		vcpy.push_back(*it);
+	std::sort(vcpy.begin(), vcpy.end());
+	it = vcpy.begin();
+	while (++it != vcpy.end())
+	{
+		tmp2 = *it;
+		if (tmp > tmp2)
+			deltatmp = tmp - tmp2;
+		else
+			deltatmp = tmp2 - tmp;
+		if (delta == -1 || delta > deltatmp)
+			delta = deltatmp;
+		tmp = tmp2;
+	}
+	return (delta);
+}
+
+unsigned int	Span::longestSpan(void) const {
+	if (_v.size() <= 1)
+		throw (NoSpanException());
+	std::vector<int>::const_iterator it = _v.begin();
+	int shortest = *it;
+	int longest = shortest;
+
+	for(; it != _v.end(); ++it)
+	{
+		if (shortest > *it) shortest = *it;
+		if (longest < *it) longest = *it;
+	}
+	return (longest - shortest);
+}
