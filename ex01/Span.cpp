@@ -41,24 +41,27 @@ unsigned int	Span::shortestSpan(void) const {
 	if (_v.size() <= 1)
 		throw (NoSpanException());
 	std::vector<int>::const_iterator it = _v.begin();
-	int	delta = -1;
-	int deltatmp;
-	int	tmp = *it;
-	int	tmp2;
-
 	std::vector<int> vcpy;
+
 	for(; it != _v.end(); ++it)
 		vcpy.push_back(*it);
+
 	std::sort(vcpy.begin(), vcpy.end());
-	it = vcpy.begin();
-	while (++it != vcpy.end())
+
+	std::vector<int>::iterator it2 = vcpy.begin();
+	int	tmp = *it2;
+	int	tmp2;
+	int	delta = (_v[0] > _v[1]) ? (_v[0] - _v[1]) : (_v[1] - _v[0]);
+	int deltatmp;
+	
+	while (++it2 != vcpy.end())
 	{
-		tmp2 = *it;
+		tmp2 = *it2;
 		if (tmp > tmp2)
 			deltatmp = tmp - tmp2;
 		else
 			deltatmp = tmp2 - tmp;
-		if (delta == -1 || delta > deltatmp)
+		if (delta > deltatmp)
 			delta = deltatmp;
 		tmp = tmp2;
 	}

@@ -15,16 +15,17 @@
 #include <iostream>
 
 int	main(void) {
-	Span s = Span(5);
+	Span sp = Span(5);
 
 	try {
-		s.addNumber(-20);
-		s.addNumber(25);
-		s.addNumber(302);
-		s.addNumber(72);
-		s.addNumber(103);
-		std::cout << "span = " << s.shortestSpan() << "\n";
-		s.addNumber(99);
+		sp.addNumber(6);
+		sp.addNumber(3);
+		sp.addNumber(17);
+		sp.addNumber(9);
+		sp.addNumber(11);
+		std::cout << sp.shortestSpan() << "\n";
+		std::cout << sp.longestSpan() << "\n";
+		sp.addNumber(99);
 	} catch (std::exception& e) {
 		std::cerr << e.what() << "\n";
 	}
