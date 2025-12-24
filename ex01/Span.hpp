@@ -25,8 +25,8 @@ class	Span {
 					return ("Exception: no span can be found (no numbers or only one).\n");
 				}
 		};
-		unsigned int	longestSpan(void) const;
-		unsigned int	shortestSpan(void) const;
+		size_t				longestSpan(void) const;
+		size_t				shortestSpan(void) const;
 		// add an overload on operator []
 	private:
 		std::size_t			_capacity;
