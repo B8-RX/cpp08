@@ -5,6 +5,8 @@
 #include <cstddef>
 #include <exception>
 
+#include <iostream>
+
 class	Span {
 	public:
 		~Span(void);
@@ -13,6 +15,21 @@ class	Span {
 
 		Span(unsigned int n);
 		void	addNumber(int n);
+
+		template<typename inputIt>
+		void	fillSpan(inputIt first, inputIt last) {
+			size_t	len = 0;
+			inputIt fcpy = first;
+			for (;fcpy != last; fcpy++)
+				len++;
+			for (size_t i = 0; first != last; first++, i++)
+			{
+				if (i >= _v.capacity())
+					throw (ContainerFullException());
+				_v.push_back(*first);
+			}
+		}
+
 		class	ContainerFullException : public std::exception {
 			public:
 				virtual const char* what() const throw() {

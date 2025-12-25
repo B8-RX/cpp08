@@ -1,4 +1,5 @@
 #include "./Span.hpp"
+#include <cstddef>
 #include <vector>
 #include <iostream>
 #include <algorithm>
@@ -28,7 +29,7 @@ void	Span::addNumber(int n) {
 		throw (ContainerFullException());
 	_v.push_back(n);
 } 
-
+	
 size_t	Span::shortestSpan(void) const {
 	if (_v.size() <= 1)
 		throw (NoSpanException());
@@ -63,7 +64,7 @@ size_t	Span::longestSpan(void) const {
 		throw (NoSpanException());
 	std::vector<int>::const_iterator	it = _v.begin();
 	long long							shortest = *it;
-	long long							longest = shortest;
+	long long							longest = *it;
 
 	for(; it != _v.end(); ++it)
 	{
