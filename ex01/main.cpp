@@ -96,7 +96,7 @@ int	main(void) {
 		std::cout << e.what() << "\n";
 	}
 
-	std::cout << "TEST RANGES OF NUMBER FILL\n";
+	std::cout << "TEST RANGE OF ITERATORS\n";
 	std::vector<int>	vtest;
 	vtest.reserve(5);
 	vtest.push_back(10);
@@ -104,11 +104,22 @@ int	main(void) {
 	vtest.push_back(30);
 	vtest.push_back(40);
 	vtest.push_back(50);
-	Span	sp6 = Span(4);
+	Span	sp6 = Span(5);
 	try {
-		sp6.fillSpan<std::vector<int>::const_iterator>(vtest.begin(), vtest.end());
+		sp6.fillSpan(vtest.begin(), vtest.end());
 		std::cout << sp6.shortestSpan() << "\n";
 		std::cout << sp6.longestSpan() << "\n";
+	}
+	catch (const std::exception& e) {
+		std::cout << e.what() << "\n";
+	}
+	
+	std::cout << "TEST RANGE OF ITERATORS THROW EXCEPTION\n";
+	Span	sp7 = Span(4);
+	try {
+		sp7.fillSpan(vtest.begin(), vtest.end());
+		std::cout << sp7.shortestSpan() << "\n";
+		std::cout << sp7.longestSpan() << "\n";
 	}
 	catch (const std::exception& e) {
 		std::cout << e.what() << "\n";

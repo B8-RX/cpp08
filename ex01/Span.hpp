@@ -18,13 +18,9 @@ class	Span {
 
 		template<typename inputIt>
 		void	fillSpan(inputIt first, inputIt last) {
-			size_t	len = 0;
-			inputIt fcpy = first;
-			for (;fcpy != last; fcpy++)
-				len++;
-			for (size_t i = 0; first != last; first++, i++)
+			for (; first != last; first++)
 			{
-				if (i >= _v.capacity())
+				if (_v.size() >= _capacity)
 					throw (ContainerFullException());
 				_v.push_back(*first);
 			}
@@ -33,13 +29,13 @@ class	Span {
 		class	ContainerFullException : public std::exception {
 			public:
 				virtual const char* what() const throw() {
-					return ("Exception: cannot add new number, container is full.\n");
+					return ("Exception: cannot add new number, container is full or too small.\n");
 				}
 		};
 		class	NoSpanException : public std::exception {
 			public:
 				virtual const char* what() const throw() {
-					return ("Exception: no span can be found (no numbers or only one).\n");
+					return ("Exception: no span can be found, container is empty or contains single number).\n");
 				}
 		};
 		size_t				longestSpan(void) const;
